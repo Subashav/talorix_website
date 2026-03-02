@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const cards = [
   {
     title: "Job Listing",
@@ -37,18 +39,11 @@ const cards = [
   },
 ];
 
-// Use a function to return the animation object for each card
-function getFloatAnimation(i: number) {
-  return {
-    animate: {
-      y: [0, -12, 0],
-      transition: {
-        duration: 3.2 + i * 0.2,
-        repeat: Infinity,
-        ease: [0.4, 0, 0.2, 1],
-      },
-    },
-  };
+function getBorderGradient(border: string) {
+  const [fromRaw, viaRaw, toRaw] = border.split(" ");
+  const normalize = (token: string) => token.replace(/^(from-|via-|to-)\[/, "").replace(/\]$/, "");
+
+  return `linear-gradient(90deg, ${normalize(fromRaw)}, ${normalize(viaRaw)}, ${normalize(toRaw)})`;
 }
 
 export default function FloatingCards() {
@@ -59,15 +54,17 @@ export default function FloatingCards() {
           <motion.div
             key={card.title}
             className={`absolute ${card.style} rounded-2xl p-4 w-48 h-32 flex flex-col items-start bg-black/70 backdrop-blur-md shadow-lg transition-all duration-300 border-2 border-transparent`}
-            {...getFloatAnimation(i)}
+            animate={{ y: [0, -12, 0] }}
+            transition={{
+              duration: 3.2 + i * 0.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
             style={{
               boxShadow: "0 8px 32px 0 rgba(60,60,60,0.18)",
               filter: "blur(0px)",
-              borderImage: `linear-gradient(90deg, var(--tw-gradient-stops)) 1`,
-              borderImageSource: `linear-gradient(90deg, var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to))`,
-              '--tw-gradient-from': card.border.split(' ')[0],
-              '--tw-gradient-via': card.border.split(' ')[1],
-              '--tw-gradient-to': card.border.split(' ')[2],
+              borderImageSlice: 1,
+              borderImageSource: getBorderGradient(card.border),
             }}
           >
             <div className="mb-2 scale-110 drop-shadow-lg">{card.icon}</div>
