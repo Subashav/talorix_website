@@ -1,0 +1,22 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom Talorix Job brand styles */
+
+:root {
+  --color-primary: #ff9100;
+  --color-primary-dark: #ff6d00;
+  --color-bg: #000000;
+  --color-border: #222222;
+  --color-text: #ff9100;
+  --color-text-secondary: #ffb74d;
+  --radius: 0.75rem;
+  --shadow: 0 2px 8px 0 rgba(16,30,54,0.12);
+}
+
+body {
+  font-family: 'Inter', 'Geist', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}

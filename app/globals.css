@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  }
+
+  :root {
+    --background: #0F0F0F;
+    --foreground: #FAFAFA;
+    --talorix-orange: #FF8C00;
+    --talorix-orange-light: #FFA500;
+    --talorix-orange-dark: #FF6B00;
+    --gray-light: #CCCCCC;
+    --gray-medium: #999999;
+    --gray-dark: #333333;
+    --gray-darker: #1A1A1A;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-talorix-orange: var(--talorix-orange);
+  --color-talorix-orange-light: var(--talorix-orange-light);
+  --color-talorix-orange-dark: var(--talorix-orange-dark);
+  --color-gray-light: var(--gray-light);
+  --color-gray-medium: var(--gray-medium);
+  --color-gray-dark: var(--gray-dark);
+  --color-gray-darker: var(--gray-darker);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.gradient-glow {
+  background: radial-gradient(ellipse at center, rgba(255, 140, 0, 0.15) 0%, transparent 70%);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.text-balance {
+  text-wrap: balance;
 }
